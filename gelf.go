@@ -98,10 +98,10 @@ func (m GelfMessage) getExtraFields() (json.RawMessage, error) {
 	}
 	
 	for name, label := range m.Container.Config.Labels {
-		if len(name) == "com.docker.swarm.service.name" {
+		if name == "com.docker.swarm.service.name" {
 			extra["_service_name"] = label
 		}
-		if len(name) == "com.docker.stack.namespace" {
+		if name == "com.docker.stack.namespace" {
 			extra["_service_namespace"] = label
 		}
 	}
