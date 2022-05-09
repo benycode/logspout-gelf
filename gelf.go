@@ -89,7 +89,7 @@ func (m GelfMessage) getExtraFields() (json.RawMessage, error) {
 		"_image_id":       m.Container.Image,
 		"_image_name":     m.Container.Config.Image,
 		"_command":        strings.Join(m.Container.Config.Cmd[:], " "),
-		"_created":        m.Container.Created
+		"_created":        m.Container.Created,
 	}
 	for name, label := range m.Container.Config.Labels {
 		if len(name) > 5 && strings.ToLower(name[0:5]) == "gelf_" {
