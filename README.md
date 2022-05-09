@@ -1,4 +1,7 @@
 # Graylog GELF Module for Logspout
+
+It's forked repo to maintain and customize to mine needs.
+
 This module allows Logspout to send Docker logs in the GELF format to Graylog via UDP.
 
 ## Build
