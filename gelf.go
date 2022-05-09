@@ -89,14 +89,23 @@ func (m GelfMessage) getExtraFields() (json.RawMessage, error) {
 		"_image_id":       m.Container.Image,
 		"_image_name":     m.Container.Config.Image,
 		"_command":        strings.Join(m.Container.Config.Cmd[:], " "),
-		"_created":        m.Container.Created,
-		"_service_name":   m.Container.Config.Env.CONTAINER_NAME,
+		"_created":        m.Container.Created
 	}
 	for name, label := range m.Container.Config.Labels {
 		if len(name) > 5 && strings.ToLower(name[0:5]) == "gelf_" {
 			extra[name[4:]] = label
 		}
 	}
+	
+	for name, label := range m.Container.Config.Labels {
+		if len(name) == "com.docker.swarm.service.name" {
+			extra["_service_name"] = label
+		}
+		if len(name) == "com.docker.stack.namespace" {
+			extra["_service_namespace"] = label
+		}
+	}
+	
 	swarmnode := m.Container.Node
 	if swarmnode != nil {
 		extra["_swarm_node"] = swarmnode.Name
