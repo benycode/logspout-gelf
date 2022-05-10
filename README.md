@@ -28,13 +28,15 @@ The following docker container attributes are mapped to the corresponding GELF e
 
 ```
 {
-        "_container_id":   <container-id>,
-        "_container_name": <container-name>,
-        "_image_id":       <container-image-sha>,
-        "_image_name":     <container-image-name>,
-        "_command":        <container-cmd>,
-        "_created":        <container-created-date>,
-        "_swarm_node":     <host-if-running-on-swarm>
+        "_container_id":        <container-id>,
+        "_container_name":      <container-name>,
+        "_image_id":            <container-image-sha>,
+        "_image_name":          <container-image-name>,
+        "_command":             <container-cmd>,
+        "_created":             <container-created-date>,
+        "_swarm_node":          <host-if-running-on-swarm>,
+        "_service_name":        <service-name>,
+        "_service_namespace":   <service-namespace>
 }
 ```
 
